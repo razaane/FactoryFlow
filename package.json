@@ -1,0 +1,26 @@
+{
+  "name": "factoryflow",
+  "version": "1.0.0",
+  "description": "API securisee de gestion des ordres de fabrication",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest --runInBand",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/razaane/FactoryFlow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/razaane/FactoryFlow/issues"
+  },
+  "homepage": "https://github.com/razaane/FactoryFlow#readme"
+}
