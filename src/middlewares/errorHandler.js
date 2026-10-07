@@ -1,8 +1,17 @@
-class AppError extends Error {
-  constructor(message, statusCode) {
-    super(message);
-    this.statusCode = statusCode;
-  }
+function notFound(req, res) {
+  res.status(404).json({
+    success: false,
+    message: `Route introuvable : ${req.method} ${req.originalUrl}`,
+  });
 }
 
-module.exports = AppError;
+function errorHandler(err, req, res,next) {
+  const statusCode = err.statusCode || 500;
+
+  res.status(statusCode).json({
+    success: false,
+    message: err.message || "Erreur interne du serveur",
+  });
+}
+
+module.exports = { notFound, errorHandler };
