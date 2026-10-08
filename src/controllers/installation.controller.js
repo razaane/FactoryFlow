@@ -9,4 +9,17 @@ async function getStatus(req,res,next) {
     }
 }
 
-module.exports = {getStatus}
+async function install(req, res, next) {
+  try {
+    const admin = await installationService.install(req.body);
+
+    res.status(201).json({
+      success: true,
+      message: "Installation réussie",
+      data: admin,
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+module.exports = {getStatus , install }
