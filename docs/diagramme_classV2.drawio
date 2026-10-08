@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="DuXqzoFD9J8xzECMyOna" name="Page-1">
-        <mxGraphModel dx="960" dy="574" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="960" dy="431" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -178,9 +178,6 @@
                 </mxCell>
                 <mxCell id="uRPbB6xp1py8lVEFNumD-53" parent="uRPbB6xp1py8lVEFNumD-51" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" value="&lt;div&gt;- quantite : Number&lt;/div&gt;" vertex="1">
                     <mxGeometry height="41" width="140" y="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="uRPbB6xp1py8lVEFNumD-54" edge="1" parent="1" source="uRPbB6xp1py8lVEFNumD-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.019;entryY=0.203;entryDx=0;entryDy=0;entryPerimeter=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;endArrow=none;endFill=0;" target="uRPbB6xp1py8lVEFNumD-35">
-                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="uRPbB6xp1py8lVEFNumD-55" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" value="0..*" vertex="1">
                     <mxGeometry height="30" width="60" x="1200" y="782" as="geometry"/>

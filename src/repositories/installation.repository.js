@@ -4,4 +4,8 @@ async function find() {
   return Installation.findOne();
 }
 
-module.exports = { find };
+async function create(data){
+    return Installation.create(data);
+}
+
+module.exports = { find ,create};
