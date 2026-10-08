@@ -1,7 +1,7 @@
 const Installation = require("../models/installation.model");
 
-async function find(){
-    return Installation.findOne();
+async function find() {
+  return Installation.findOne();
 }
 
-module.exports={find}
+module.exports = { find };

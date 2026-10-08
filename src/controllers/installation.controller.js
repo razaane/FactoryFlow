@@ -1,6 +1,6 @@
 const installationService = require("../services/installation.service");
 
-async function getStatus(res,req,next) {
+async function getStatus(req,res,next) {
     try{
         const status = await installationService.getStatus();
         return res.json(status);
@@ -8,3 +8,5 @@ async function getStatus(res,req,next) {
         next(err)
     }
 }
+
+module.exports = {getStatus}

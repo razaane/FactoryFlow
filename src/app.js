@@ -1,12 +1,14 @@
 const express = require("express");
 
 const app = express();
+const notFound = require("./middlewares/notFound");
+const errorHandler = require("./middlewares/errorHandler");
+const installationRoutes = require("./routes/installation.routes");
+
 
 app.use(express.json());
+app.use("/api/installation",installationRoutes);
 
-app.get("/health", (req, res) => {
-  res.json({ status: "ok" });
-});
 
 
 app.use(notFound);

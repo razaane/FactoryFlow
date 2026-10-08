@@ -1,13 +1,11 @@
-
 const installationRepository = require("../repositories/installation.repository");
 
-async function getStatus(){
+async function getStatus() {
+  const installation = await installationRepository.find();
 
-    const installation = await installationRepository.find();
-    if (!installation) {
-        return { installed: false };
-    }
-    return { installed: installation.installed };
+  return {
+    installed: Boolean(installation && installation.installed)
+  };
 }
 
-module.exports = {getStatus}
+module.exports = { getStatus };
