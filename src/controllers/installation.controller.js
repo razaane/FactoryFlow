@@ -18,7 +18,6 @@ async function install(req, res, next) {
       message: "Installation réussie",
       data: admin,
     });
-
   } catch (err) {
     next(err);
   }

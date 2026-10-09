@@ -1,7 +1,7 @@
 const installationRepository = require("../repositories/installation.repository");
 const userRepository = require("../repositories/user.repository");
 
-const validateInstall  = require("../validators/installation.validator");
+const { validateInstall } = require("../validators/installation.validator");
 const AppError = require("../utils/AppError");
 
 const bcrypt = require("bcryptjs");

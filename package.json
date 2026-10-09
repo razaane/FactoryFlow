@@ -11,6 +11,9 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js"
   },
+  "jest": {
+  "testEnvironment": "node"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/razaane/FactoryFlow.git"
