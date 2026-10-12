@@ -10,4 +10,20 @@ async function login(req, res, next) {
             next(error); 
         } 
 } 
-module.exports = { login };
+
+function getProfile(req, res) {
+    return res.status(200).json({
+        success: true,
+        data: {
+            id: req.user._id,
+            name: req.user.name,
+            email: req.user.email,
+            role: req.user.role,
+        },
+    });
+}
+
+module.exports = {
+    login,
+    getProfile,
+};

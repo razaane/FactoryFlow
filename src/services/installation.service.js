@@ -44,4 +44,13 @@ async function install(body){
     }
 
 }
-module.exports = { getStatus , install };
+
+async function getProfile(){
+    try { 
+        const profile = await authService.getProfile(req.user._id); 
+        return res.status(200).json({ success: true, data: profile, }); 
+    } catch (err) { 
+        next(err); 
+    }
+}
+module.exports = { getStatus , install ,getProfile};

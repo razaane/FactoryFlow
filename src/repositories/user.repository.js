@@ -7,4 +7,7 @@ async function create(data){
 async function findByEmail(email){
     return User.findOne({email:email.toLowerCase()})
 }
-module.exports ={create , findByEmail}
+async function findById(id) {
+  return User.findById(id);
+}
+module.exports ={create , findByEmail,findById}

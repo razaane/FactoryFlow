@@ -18,8 +18,8 @@ async function authenticate(req, res, next) {
 
         const user = await User.findById(payload.id);
 
-        if (!user || !user.isActive) {
-            throw new AppError("Utilisateur introuvable ou désactivé", 401);
+        if (!user ) {
+            throw new AppError("Utilisateur introuvable ", 401);
         }
 
         req.user = user;
