@@ -11,7 +11,10 @@ const errorHandler =require('./middlewares/errorHandler');
 const authenticate = require("./middlewares/authenticate");
 const authorize = require("./middlewares/authorize");
 
+const authRoutes = require("./routes/auth.routes");
+
 app.use("/api/installation", installationRoutes);
+app.use("/api/auth", authRoutes);
 
 app.get("/test-auth", authenticate, (req, res) => {
     res.json({
