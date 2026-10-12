@@ -2,9 +2,10 @@ const userRepository =require("../repositories/user.repository");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const AppError = require("../utils/AppError");
+const config = require("../config/env");
 
 async function login(email,password){
-    const user = userRepository.findByEmail(email);
+    const user = await userRepository.findByEmail(email);
 
     if(!user){
         throw new AppError("Email ou mot de passe incorrect",401);
@@ -15,12 +16,12 @@ async function login(email,password){
         throw new AppError("Email ou mot de passe incorrect",401);
     }
 
-    const token = jwt.sign({id:user.id,role:user.role},
-        process.env.JWT_SECRET,
-        {expiresIn: process.env.JWT_EXPIRES_IN || "1d",}
+    const token = jwt.sign({id:user._id,role:user.role},
+        config.jwtSecret,
+        {expiresIn: config.jwtExpiresIn,}
     );
     return {token,user:{
-        id:user.id,
+        id:user._id,
         name:user.name,
         email:user.email,
         role:user.role,
