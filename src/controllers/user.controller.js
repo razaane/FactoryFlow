@@ -13,5 +13,12 @@ async function create(req, res, next) {
     next(err);
   }
 }
-
-module.exports = { create };
+async function list(req, res, next) {
+  try {
+    const users = await userService.list(req.query);
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
+}
+module.exports = { create ,list };

@@ -20,4 +20,24 @@ function validateCreateUser(body = {}) {
     }
 }
 
-module.exports = { validateCreateUser };
+function validateListQuery(query = {}) {
+  const page = Number(query.page || 1);
+  const limit = Number(query.limit || 10);
+  const role = query.role;
+
+  if (page < 1 || !Number.isInteger(page)) {
+    throw new AppError("Page invalide", 400);
+  }
+
+  if (limit < 1 || limit > 100 || !Number.isInteger(limit)) {
+    throw new AppError("Limit invalide", 400);
+  }
+
+  if (role && !["Admin", "Operateur"].includes(role)) {
+    throw new AppError("Rôle invalide", 400);
+  }
+
+  return { page, limit, role };
+}
+
+module.exports = { validateCreateUser ,validateListQuery};

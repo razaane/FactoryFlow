@@ -1,7 +1,10 @@
 
 const bcrypt = require("bcryptjs");
 const userRepository = require("../repositories/user.repository");
-const { validateCreateUser } = require("../validators/user.validator");
+const {
+  validateCreateUser,
+  validateListQuery
+} = require("../validators/user.validator");
 const AppError = require("../utils/AppError");
 
 async function create(body) {
@@ -40,4 +43,19 @@ async function create(body) {
   }
 }
 
-module.exports = { create };
+async function list(query) {
+  const { page, limit, role } = validateListQuery(query);
+  const filter = role ? { role } : {};
+
+  const users = await userRepository.findAll(filter, limit);
+  const total = await userRepository.count(filter);
+
+  return {
+    items: users,
+    page,
+    limit,
+    total
+  };
+}
+
+module.exports = { create  ,list};

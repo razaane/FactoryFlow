@@ -10,4 +10,12 @@ async function findByEmail(email){
 async function findById(id) {
   return User.findById(id);
 }
-module.exports ={create , findByEmail,findById}
+
+async function findAll(filter, limit) {
+  return User.find(filter).limit(limit);
+}
+
+async function count(filter) {
+  return User.countDocuments(filter);
+}
+module.exports ={create , findByEmail,findById ,findAll , count}
