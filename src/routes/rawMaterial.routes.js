@@ -1,10 +1,16 @@
+
 const express = require("express");
 const router = express.Router();
 
-const rawMaterialController = require("../controllers/rawMaterial.controller");
+const controller = require("../controllers/rawMaterial.controller");
 const authenticate = require("../middlewares/authenticate");
 const authorize = require("../middlewares/authorize");
 
-router.post("/",authenticate,authorize("Admin"),rawMaterialController.create);
+router.use(authenticate, authorize("Admin"));
+
+router.post("/", controller.create);
+router.get("/", controller.list);
+router.get("/:id", controller.getById);
+router.put("/:id", controller.update);
 
 module.exports = router;
