@@ -12,9 +12,11 @@ const authenticate = require("./middlewares/authenticate");
 const authorize = require("./middlewares/authorize");
 
 const authRoutes = require("./routes/auth.routes");
+const userRoutes = require("./routes/user.routes");
 
 app.use("/api/installation", installationRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 app.get("/test-auth", authenticate, (req, res) => {
     res.json({
