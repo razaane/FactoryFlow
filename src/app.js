@@ -14,9 +14,12 @@ const authorize = require("./middlewares/authorize");
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 
+const rawMaterialRoutes = require("./routes/rawMaterial.routes");
+
 app.use("/api/installation", installationRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/raw-materials", rawMaterialRoutes);
 
 app.get("/test-auth", authenticate, (req, res) => {
     res.json({
