@@ -8,7 +8,5 @@ const authenticate = require("../middlewares/authenticate");
 const authorize = require("../middlewares/authorize");
 
 router.use(authenticate, authorize("Admin"));
-
 router.post("/", validateProduct, controller.create);
-
 module.exports = router;
