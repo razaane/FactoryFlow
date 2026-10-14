@@ -31,11 +31,23 @@ async function updateById(id, data) {
   });
 }
 
+
+async function findBelowThreshold() {
+  return RawMaterial.find({
+    $expr: {
+      $lte: ["$quantity", "$alertThreshold"]
+    }
+  })
+    .select("reference name quantity alertThreshold unit")
+    .sort({ quantity: 1 })
+    .lean();
+}
 module.exports = {
   create,
   findByReference,
   findById,
   findAll,
   count,
-  updateById
+  updateById,
+  findBelowThreshold
 };

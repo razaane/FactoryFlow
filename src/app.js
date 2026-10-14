@@ -15,7 +15,7 @@ const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 
 const rawMaterialRoutes = require("./routes/rawMaterial.routes");
-const stockMovementRoutes = require("./src/routes/stockMovement.routes");
+const stockMovementRoutes = require("./routes/stockMovement.routes");
 
 app.use("/api/installation", installationRoutes);
 app.use("/api/auth", authRoutes);

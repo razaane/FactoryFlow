@@ -143,4 +143,9 @@ async function update(id, body) {
   }
 }
 
-module.exports = { create, list, getById, update };
+
+async function getAlerts() {
+  return rawMaterialRepository.findBelowThreshold();
+}
+
+module.exports = { create, list, getById, update ,getAlerts};
