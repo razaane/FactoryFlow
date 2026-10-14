@@ -12,5 +12,6 @@ router.post("/", controller.create);
 router.get("/", controller.list);
 router.get("/:id", controller.getById);
 router.put("/:id", controller.update);
+router.post("/:id/stock-entries", controller.addStockEntry);
 
 module.exports = router;

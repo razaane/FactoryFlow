@@ -45,4 +45,32 @@ async function update(req, res, next) {
   }
 }
 
-module.exports = { create, list, getById, update };
+
+async function addStockEntry(req, res, next) {
+  try {
+    const stockService = require("../services/stock.service");
+
+    const quantity = req.body.quantity;
+
+    if (typeof quantity !== "number" || !Number.isFinite(quantity)) {
+      const error = new Error("La quantité doit être un nombre valide");
+      error.statusCode = 400;
+      throw error;
+    }
+
+    const movement = await stockService.addEntry(
+      req.params.id,
+      quantity
+    );
+
+    return res.status(201).json({
+      success: true,
+      message: "Entrée de stock enregistrée",
+      data: movement
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = { create, list, getById, update , addStockEntry };
