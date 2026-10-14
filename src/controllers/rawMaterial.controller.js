@@ -73,4 +73,19 @@ async function addStockEntry(req, res, next) {
   }
 }
 
-module.exports = { create, list, getById, update , addStockEntry };
+
+async function getAlerts(req, res, next) {
+  try {
+    const materials = await rawMaterialService.getAlerts();
+
+    return res.status(200).json({
+      success: true,
+      count: materials.length,
+      data: materials
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = { create, list, getById, update , addStockEntry , getAlerts};
