@@ -10,12 +10,11 @@ router.use(authenticate, authorize("Admin"));
 
 router.post("/", controller.create);
 router.get("/", controller.list);
+
+router.get("/alerts", controller.getAlerts);
+
 router.get("/:id", controller.getById);
 router.put("/:id", controller.update);
 router.post("/:id/stock-entries", controller.addStockEntry);
-router.post("/", controller.create);
-router.get("/", controller.list);
-router.get("/:id", controller.getById);
-router.put("/:id", controller.update);
 
 module.exports = router;
