@@ -1,4 +1,5 @@
 const AppError = require("../utils/AppError");
+const mongoose = require("mongoose");
 
 function validateCreateMaterial(body = {}) {
   const { reference, name, unit, stockInitial, alertThreshold } = body;

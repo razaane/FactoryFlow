@@ -1,9 +1,13 @@
 const rawMaterialRepository = require("../repositories/rawMaterial.repository");
+const StockMovement = require("../models/stockMovement.model");
+
 const {
+  validateCreateMaterial,
   validateId,
   validateListQuery,
   validateUpdateMaterial
 } = require("../validators/rawMaterial.validator");
+
 const AppError = require("../utils/AppError");
 
 async function create(body) {
@@ -27,11 +31,6 @@ async function create(body) {
 }
 
 
-const {
-  validateId,
-  validateListQuery,
-  validateUpdateMaterial
-} = require("../validators/rawMaterial.validator");
 
 async function getQuantity(material) {
   const result = await StockMovement.aggregate([
