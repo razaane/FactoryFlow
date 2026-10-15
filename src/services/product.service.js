@@ -114,4 +114,29 @@ async function create(data) {
   }
 }
 
-module.exports = { create };
+
+async function list({ page, limit, search = "" }) {
+  return productRepository.findAll({
+    page,
+    limit,
+    search: search.trim()
+  });
+}
+
+async function getById(id) {
+  const product = await productRepository.findById(id);
+
+  if (!product) {
+    const error = new Error("Produit introuvable");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  return product;
+}
+
+module.exports = {
+  create,
+  list,
+  getById
+};

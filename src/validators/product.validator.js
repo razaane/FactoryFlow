@@ -60,4 +60,40 @@ function validateProduct(req, res, next) {
   next();
 }
 
-module.exports = validateProduct;
+
+
+function validateProductList(req, res, next) {
+  const { page, limit, search } = req.query;
+
+  const isPositiveInteger = value =>
+    /^\d+$/.test(value) && Number(value) > 0;
+
+  if (page !== undefined && !isPositiveInteger(page)) {
+    const error = new Error("page doit être un entier positif");
+    error.statusCode = 400;
+    return next(error);
+  }
+
+  if (limit !== undefined && !isPositiveInteger(limit)) {
+    const error = new Error("limit doit être un entier positif");
+    error.statusCode = 400;
+    return next(error);
+  }
+
+  if (limit !== undefined && Number(limit) > 100) {
+    const error = new Error("limit ne peut pas dépasser 100");
+    error.statusCode = 400;
+    return next(error);
+  }
+
+  if (search !== undefined && typeof search !== "string") {
+    const error = new Error("search doit être une chaîne de caractères");
+    error.statusCode = 400;
+    return next(error);
+  }
+
+  next();
+}
+
+
+module.exports = {validateProduct,validateProductList};
