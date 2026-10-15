@@ -216,6 +216,53 @@ async function cancel(id) {
     }
   );
 }
+
+async function list({
+  status,
+  product,
+  from,
+  to,
+  page,
+  limit
+}) {
+  const filter = {};
+
+  if (status) {
+    filter.status = status;
+  }
+
+  if (product) {
+    filter.product = product;
+  }
+
+  if (from || to) {
+    filter.createdAt = {};
+
+    if (from) {
+      filter.createdAt.$gte =
+        new Date(from);
+    }
+
+    if (to) {
+      const endDate = new Date(to);
+
+      endDate.setHours(
+        23,
+        59,
+        59,
+        999
+      );
+
+      filter.createdAt.$lte = endDate;
+    }
+  }
+
+  return productionOrderRepository.findFiltered({
+    filter,
+    page,
+    limit
+  });
+}
 module.exports = {
-  create ,update , cancel
+  create ,update , cancel , list
 };

@@ -41,4 +41,10 @@ router.post(
   "/:id/cancel",
   controller.cancel
 );
+
+router.get(
+  "/",
+  validateProductionOrderList,
+  controller.list
+);
 module.exports = router;
