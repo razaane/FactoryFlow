@@ -105,6 +105,117 @@ async function create({
   }
 }
 
+async function update(
+  id,
+  {
+    quantity,
+    assignedTo
+  }
+) {
+  const order =
+    await productionOrderRepository.findById(id);
+
+  if (!order) {
+    throw new AppError(
+      "Ordre introuvable",
+      404
+    );
+  }
+
+  if (order.status !== "PLANIFIE") {
+    throw new AppError(
+      "Seul un ordre planifié peut être modifié",
+      409
+    );
+  }
+
+  if (
+    quantity !== undefined &&
+    (
+      typeof quantity !== "number" ||
+      !Number.isFinite(quantity) ||
+      quantity <= 0
+    )
+  ) {
+    throw new AppError(
+      "La quantité doit être strictement positive",
+      400
+    );
+  }
+
+  if (
+    assignedTo !== undefined &&
+    !mongoose.isValidObjectId(assignedTo)
+  ) {
+    throw new AppError(
+      "Identifiant opérateur invalide",
+      400
+    );
+  }
+
+  if (assignedTo !== undefined) {
+    const operator =
+      await User.findById(assignedTo).lean();
+
+    if (!operator) {
+      throw new AppError(
+        "Utilisateur introuvable",
+        404
+      );
+    }
+
+    if (operator.role !== "Operateur") {
+      throw new AppError(
+        "L'utilisateur affecté doit être un opérateur",
+        400
+      );
+    }
+  }
+
+  const data = {};
+
+  if (quantity !== undefined) {
+    data.quantity = quantity;
+  }
+
+  if (assignedTo !== undefined) {
+    data.assignedTo = assignedTo;
+  }
+
+  // IMPORTANT:
+  // On ne touche PAS à composition.
+  return productionOrderRepository.updateById(
+    id,
+    data
+  );
+}
+
+async function cancel(id) {
+  const order =
+    await productionOrderRepository.findById(id);
+
+  if (!order) {
+    throw new AppError(
+      "Ordre introuvable",
+      404
+    );
+  }
+
+  if (order.status !== "PLANIFIE") {
+    throw new AppError(
+      "Seul un ordre planifié peut être annulé",
+      409
+    );
+  }
+
+  return productionOrderRepository.cancelById(
+    id,
+    {
+      status: "ANNULE",
+      cancelledAt: new Date()
+    }
+  );
+}
 module.exports = {
-  create
+  create ,update , cancel
 };
