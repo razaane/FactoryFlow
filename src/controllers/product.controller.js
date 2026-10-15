@@ -49,8 +49,26 @@ async function getById(req, res, next) {
   }
 }
 
+async function update(req, res, next) {
+  try {
+    const product = await productService.update(
+      req.params.id,
+      req.body
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Produit modifié avec succès",
+      data: product
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   create,
   list,
-  getById
+  getById,
+  update
 };

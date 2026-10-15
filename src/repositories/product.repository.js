@@ -8,7 +8,6 @@ async function findByReference(reference) {
   return Product.findOne({ reference });
 }
 
-
 async function findAll({ page, limit, search }) {
   const filter = {};
 
@@ -19,8 +18,18 @@ async function findAll({ page, limit, search }) {
     );
 
     filter.$or = [
-      { reference: { $regex: escapedSearch, $options: "i" } },
-      { name: { $regex: escapedSearch, $options: "i" } }
+      {
+        reference: {
+          $regex: escapedSearch,
+          $options: "i"
+        }
+      },
+      {
+        name: {
+          $regex: escapedSearch,
+          $options: "i"
+        }
+      }
     ];
   }
 
@@ -31,6 +40,7 @@ async function findAll({ page, limit, search }) {
       .skip((page - 1) * limit)
       .limit(limit)
       .lean(),
+
     Product.countDocuments(filter)
   ]);
 
@@ -51,9 +61,23 @@ async function findById(id) {
     .lean();
 }
 
+async function update(id, data) {
+  return Product.findByIdAndUpdate(
+    id,
+    data,
+    {
+      new: true,
+      runValidators: true
+    }
+  )
+    .populate("composition.material")
+    .lean();
+}
+
 module.exports = {
   create,
   findByReference,
   findAll,
-  findById
+  findById,
+  update
 };

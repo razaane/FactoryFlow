@@ -1,3 +1,4 @@
+const { number } = require("joi");
 const mongoose = require("mongoose");
 
 const installationSchema = new mongoose.Schema(
@@ -12,7 +13,8 @@ const installationSchema = new mongoose.Schema(
   },
   {
     timestamps: true
-  }
+  },
+  
 );
 
 module.exports = mongoose.model("Installation", installationSchema);
