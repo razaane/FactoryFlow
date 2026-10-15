@@ -18,6 +18,7 @@ const rawMaterialRoutes = require("./routes/rawMaterial.routes");
 const stockMovementRoutes = require("./routes/stockMovement.routes");
 const productRoutes = require("./routes/product.routes");
 const productionOrderRoutes =require("./routes/productionOrder.routes");
+const operatorOrderRoutes =require("./routes/operatorOrder.routes");
 
 app.use("/api/installation", installationRoutes);
 app.use("/api/auth", authRoutes);
@@ -26,7 +27,7 @@ app.use("/api/raw-materials", rawMaterialRoutes);
 app.use("/api/stock-movements", stockMovementRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/production-orders",productionOrderRoutes);
-
+app.use("/api/operator/orders",operatorOrderRoutes);
 
 app.get("/test-auth", authenticate, (req, res) => {
     res.json({
