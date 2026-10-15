@@ -3,14 +3,11 @@ const router = express.Router();
 
 const controller = require("../controllers/product.controller");
 
-const validateProduct =
+const {validateProduct ,validateProductList} =
   require("../validators/product.validator");
 
 const validateProductUpdate =
   require("../validators/productUpdate.validator");
-
-const validateProductList =
-  require("../validators/productList.validator");
 
 const validateProductId =
   require("../validators/productId.validator");
