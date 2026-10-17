@@ -1,6 +1,4 @@
-const operatorOrderService =
-  require("../services/operatorOrder.service");
-
+const operatorOrderService = require("../services/operatorOrder.service");
 async function list(req, res, next) {
   try {
     const result =
@@ -37,7 +35,62 @@ async function getById(req, res, next) {
   }
 }
 
+
+function getOperatorId(req) {
+  return req.user.id || req.user._id;
+}
+
+async function start(req, res, next) {
+  try {
+    const order = await operatorOrderService.start(
+      req.params.id,
+      getOperatorId(req)
+    );
+
+    res.json({
+      success: true,
+      message: "Ordre démarré",
+      data: order
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function finish(req, res, next) {
+  try {
+    const order = await operatorOrderService.finish(
+      req.params.id,
+      getOperatorId(req)
+    );
+
+    res.json({
+      success: true,
+      message: "Ordre terminé",
+      data: order
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function history(req, res, next) {
+  try {
+    const result = await operatorOrderService.history(
+      getOperatorId(req),
+      req.query
+    );
+
+    res.json({ success: true, ...result });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   list,
-  getById
+  getById,
+   start,
+  finish,
+  history
 };

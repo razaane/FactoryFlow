@@ -7,9 +7,11 @@ services:
     volumes:
       - mongo_data:/data/db
     healthcheck:
-      test: >
-        mongosh --quiet --eval
-        "try { rs.status().ok } catch (e) { rs.initiate({_id:'rs0',members:[{_id:0,host:'mongo:27017'}]}).ok }"
+      test:
+        [
+          "CMD-SHELL",
+          "mongosh --quiet --eval \"try { if (rs.status().ok === 1) { quit(0) } } catch (e) { if (e.code === 94) { rs.initiate({_id:'rs0',members:[{_id:0,host:'mongo:27017'}]}); quit(0) } else { quit(1) } }\""
+        ]
       interval: 5s
       timeout: 10s
       retries: 10

@@ -30,4 +30,9 @@ router.get(
   controller.getById
 );
 
+
+router.get("/history", controller.history);
+router.post("/:id/start", controller.start);
+router.post("/:id/finish", controller.finish);
+
 module.exports = router;
