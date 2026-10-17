@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 
 const productRepository = require("../repositories/product.repository");
 const rawMaterialRepository = require("../repositories/rawMaterial.repository");
+const AppError = require("../utils/AppError");
 
+function createError(message, statusCode) {
+  return new AppError(message, statusCode);
+}
 
 async function create(data) {
   const { reference, name, description = "", composition } = data;

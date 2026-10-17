@@ -45,12 +45,4 @@ async function install(body){
 
 }
 
-async function getProfile(){
-    try { 
-        const profile = await authService.getProfile(req.user._id); 
-        return res.status(200).json({ success: true, data: profile, }); 
-    } catch (err) { 
-        next(err); 
-    }
-}
-module.exports = { getStatus , install ,getProfile};
+module.exports = { getStatus , install };

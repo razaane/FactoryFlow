@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("../docs/swagger");
 
 const installationRoutes = require("./routes/installation.routes");
 const notFound =require('./middlewares/notFound');
@@ -42,6 +44,8 @@ app.get("/test-admin", authenticate, authorize("Admin"), (req, res) => {
     });
 });
 
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(notFound);
 app.use(errorHandler);

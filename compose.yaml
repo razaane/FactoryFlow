@@ -3,7 +3,7 @@ services:
     image: mongo:7
     command: ["--replSet", "rs0", "--bind_ip_all"]
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - mongo_data:/data/db
     healthcheck:
@@ -20,7 +20,7 @@ services:
   api:
     build: .
     ports:
-      - "3000:3000"
+      - "3001:3000"
     env_file: .env
     environment:
       MONGO_URI: mongodb://mongo:27017/factoryflow?replicaSet=rs0
